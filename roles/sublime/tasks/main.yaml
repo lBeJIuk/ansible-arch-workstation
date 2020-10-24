@@ -1,0 +1,15 @@
+---
+- name: Install sublime
+  yay:
+    name: sublime-text-3
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  tags: ['sublime']
+- name: Copy config
+  template:
+    src: Preferences.sublime-settings.j2
+    dest: "/home/{{ user.name }}/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0644
+  tags: ['sublime']

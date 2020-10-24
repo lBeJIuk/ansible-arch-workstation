@@ -1,5 +1,8 @@
 ---
 # envars
+user:
+  name: "{{ lookup('env','USER') }}"
+#
 ansible_user: "{{ lookup('env','USER') }}"
 editor: vim
 browser: firefox

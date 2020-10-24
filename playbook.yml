@@ -4,25 +4,28 @@
   become_method: sudo
 
   roles:
+    - sublime
+    - zsh
+    - terminator
+    - vim
     # - hostname
     # - mkinitcpio
-    - locale
-    - time
-    - pkgs
-    - yay
+    #  - locale
+    #- time
+    #- pkgs
+    #- yay
     # - git
-    - zsh
-    - i3-gaps
-    - conky
-    - ssh
+    #- i3-gaps
+    #- conky
+    #- ssh
     # - hosts
     # - jahrik.vim
     # - ansible
-    - browser
+    #- browser
     # - docker
     # - pianobar
     # - python
-    - sound
+    #- sound
     # - virtualbox
     # - mutt
     # - vagrant

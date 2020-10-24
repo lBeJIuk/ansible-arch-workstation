@@ -1,0 +1,18 @@
+---
+- name: Install terminator
+  yay:
+    name: terminator
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  tags: ['terminator']
+- name: Copy config
+  template:
+    src: "{{ item }}.j2"
+    dest: "/home/{{ user.name }}/.config/terminator/{{ item }}"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0644
+  with_items:
+    - config
+    - profiles
+  tags: ['terminator']

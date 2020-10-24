@@ -15,46 +15,19 @@
     version: master
   tags: [ 'zsh' ]
 
-- name: create ~/.z/ dir
-  file:
-    path: "/home/{{ ansible_user }}/.z"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: 0755
-  tags: [ "zsh" ]
-
-- name: generate ~/.z/ files
-  template:
-    src: "{{ item }}.j2"
-    dest: "/home/{{ ansible_user }}/.z/{{ item }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-  with_items:
-    - zshrc
-    - zshenv
-    - alias.zsh
-    - export.zsh
-    - functions.zsh
-    - keybindings.zsh
-    - chef.zsh
-    - aws.zsh
-    - python.zsh
-    - ansible.zsh
+- name: clone theme
+  git:
+    repo: "https://github.com/bhilburn/powerlevel9k.git"
+    dest: "/home/{{ ansible_user }}/.oh-my-zsh/custom/themes/powerlevel9k"
+    version: master
   tags: [ 'zsh' ]
 
-- name: link the zshrc and zshenv
-  file:
-    src: "/home/{{ ansible_user }}/.z/{{ item }}"
-    dest: "/home/{{ ansible_user }}/.{{ item }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    state: link
-    force: yes
-  with_items:
-    - zshrc
-    - zshenv
-  tags: [ 'zsh' ]
+- name: Copy config
+  copy:
+    src: files/.zshrc
+    dest: "/home/{{ user.name }}/.zshrc"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
 
 - name: change shell from bash to zsh
   user:
