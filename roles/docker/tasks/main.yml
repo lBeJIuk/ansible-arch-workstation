@@ -7,7 +7,6 @@
   with_items:
     - docker
     - docker-compose
-    - docker-machine
   tags: [ "docker" ]
 
 - name: Verify docker group exists

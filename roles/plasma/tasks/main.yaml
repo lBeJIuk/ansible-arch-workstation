@@ -1,0 +1,16 @@
+---
+- name: Copy global shortcuts
+  copy:
+    src: files/kglobalshortcutsrc
+    dest: "/home/{{ user.name }}/.config/kglobalshortcutsrc"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+  tags: [ 'plasma' ]
+
+- name: Copy custom shortcuts
+  copy:
+    src: files/khotkeysrc
+    dest: "/home/{{ user.name }}/.config/khotkeysrc"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+  tags: [ 'plasma' ]

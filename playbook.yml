@@ -8,6 +8,13 @@
     - zsh
     - terminator
     - vim
+    - docker
+    - albert
+    - flameshot
+    - plasma
+    - ssh
+    - virtualbox
+
     # - hostname
     # - mkinitcpio
     #  - locale
@@ -17,16 +24,13 @@
     # - git
     #- i3-gaps
     #- conky
-    #- ssh
     # - hosts
     # - jahrik.vim
     # - ansible
     #- browser
-    # - docker
     # - pianobar
     # - python
     #- sound
-    # - virtualbox
     # - mutt
     # - vagrant
     # - user
@@ -49,14 +53,25 @@
 #     # https://wiki.archlinux.org/index.php/RVM
 #     # https://gist.github.com/asnodgrass/36d88ffcb76b4068c62c
 # 
-#     - name: install chat apps from aur
-#       yay:
-#         name: "{{ item }}"
-#         user: "{{ ansible_user }}"
-#       with_items:
-#         - bluejeans
-#         - hipchat
-#       tags: [ 'chat' ]
+     - name: install apps from aur
+       yay:
+         name: "{{ item }}"
+         user: "{{ user.name }}"
+         dir: "/opt/"
+       with_items:
+         - jetbrains-toolbox
+         - teams
+         - slack-desktop
+         - discord
+         - zoom
+         - peek
+         - mc
+         - htop
+         - meld
+         - remmina
+         - remmina-plugin-open
+         - remmina-plugin-rdesktop
+       tags: [ 'aur_apps' ]
 # 
 #     - name: install evolution email client
 #       package:

@@ -11,14 +11,14 @@
 - name: use oh-my-zsh
   git:
     repo: "https://github.com/robbyrussell/oh-my-zsh.git"
-    dest: "/home/{{ ansible_user }}/.oh-my-zsh"
+    dest: "/home/{{ user.name }}/.oh-my-zsh"
     version: master
   tags: [ 'zsh' ]
 
 - name: clone theme
   git:
     repo: "https://github.com/bhilburn/powerlevel9k.git"
-    dest: "/home/{{ ansible_user }}/.oh-my-zsh/custom/themes/powerlevel9k"
+    dest: "/home/{{ user.name }}/.oh-my-zsh/custom/themes/powerlevel9k"
     version: master
   tags: [ 'zsh' ]
 
@@ -28,9 +28,10 @@
     dest: "/home/{{ user.name }}/.zshrc"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
+  tags: [ 'zsh' ]
 
 - name: change shell from bash to zsh
   user:
-    name: "{{ ansible_user }}"
+    name: "{{ user.name }}"
     shell: /bin/zsh
   tags: [ 'zsh' ]
