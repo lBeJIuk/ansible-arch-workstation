@@ -72,6 +72,14 @@
          - remmina-plugin-open
          - remmina-plugin-rdesktop
          - nautilus
+         - telegram-desktop
+         - nodejs
+         - npm
+         - code
+         - speedcrunch
+         - cutecom
+         - mongodb-compass
+         - obinskit
        tags: [ 'aur_apps' ]
 # 
 #     - name: install evolution email client
