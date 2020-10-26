@@ -8,3 +8,13 @@
     user: yes
   become: false
   tags: [ 'sound' ]
+
+- name: restart mpris
+  become: false
+  systemd:
+    name: mpris-proxy
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+    scope: user
+  tags: [ 'sound' ]

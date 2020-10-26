@@ -1,90 +1,52 @@
 ---
-- name: Install alsa-utils
-  pacman:
+# Bluetooth
+- name: Install bluetooth
+  yay:
     name: "{{ item }}"
-    state: present
+    user: "{{ user.name }}"
+    dir: "/opt/"
   with_items:
-    - alsa-utils
-    - alsa-oss
-    - alsa-plugins
+    - pulseaudio-alsa
+    - bluez-utils
+    - pulseaudio-modules-bt
+    - libldac
   tags: [ 'sound' ]
 
-- name: Install PulseAudio
-  pacman:
-    name: "{{ item }}"
-    state: present
-  with_items:
-      - pulseaudio
-      - pulseaudio-alsa
-      - pavucontrol
-  notify: restart pulse as user
+- name: ensure ~/.config/systemd/user is dir
+  file:
+    path: "/home/{{ user.name }}/.config/systemd/user"
+    state: directory
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0755
   tags: [ 'sound' ]
 
-- name: Switch output to newly connected devices
-  lineinfile:
-    line: "load-module module-switch-on-connect"
+- name: Copy config
+  copy:
+    src: files/mpris-proxy.service
+    dest: "/home/{{ user.name }}/.config/systemd/user/mpris-proxy.service"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+  tags: [ 'sound' ]
+
+- name: configure pulseaudio
+  blockinfile:
+    block: |
+      load-module module-switch-on-connect
+      load-module module-bluetooth-discover a2dp_config="ldac_eqmid=hq ldac_fmt=f32"
+      load-module module-echo-cancel use_master_format=1 aec_method=webrtc aec_args="analog_gain_control=0\ digital_gain_control=1" source_name=echoCancel_source sink_name=echoCancel_sink
+      set-default-source echoCancel_source
+      set-default-sink echoCancel_sink
     dest: /etc/pulse/default.pa
     state: present
   tags: [ 'sound' ]
 
-#- name: Install pasystray
-#  yay:
-#    name: pasystray-gtk3-standalone
-#    user: "{{ user.name }}"
-#  tags: [ 'sound' ]
-
-- name: Install pulseaudio-ctl
-  yay:
-    name: pulseaudio-ctl
-    user: "{{ ansible_user }}"
-  tags: [ 'sound' ]
-
-- name: Generate /etc/libao.conf
-  template:
-    src: libao.conf.j2
-    dest: /etc/libao.conf
-  notify: restart pulse as user
-  tags: [ 'sound' ]
-
-#Setting up Sound
-## groupadd pulse-access
-## groupadd pulse-rt
-##gpasswd -a "yourusername" pulse-access
-##gpasswd -a "yourusername" pulse-rt
-##sudo nano /etc/asound.conf
-##pcm.pulse {
-#    type pulse
-#}
-#ctl.pulse {
-#    type pulse
-#}
-#pcm.!default {
-#    type pulse
-#}
-#ctl.!default {
-#    type pulse
-#}
-#sudo nano /etc/libao.conf
-##default_driver=pulse
-#
-#
-#once you finish doing all that, load up your pavucontrol, and switch it to the device you want sound from (if in the internet browser, play a video first for it to show up)
-
-# Bluetooth
-- name: Install bluetooth
-  pacman:
-    name: "{{ item }}"
+- name: configure pulseaudio
+  lineinfile:
+    line: "AutoEnable=true"
+    dest: /etc/bluetooth/main.conf
     state: present
-  with_items:
-    - pulseaudio-alsa
-    - pulseaudio-bluetooth
-    - bluez
-    - bluez-libs
-    - bluez-utils
-    - blueman
-  tags:
-    - sound
-    - bluetooth
+  tags: [ 'sound' ]
 
 - name: start bluetooth daemon
   systemd:
@@ -92,6 +54,4 @@
     state: started
     daemon_reload: yes
     enabled: yes
-  tags:
-    - sound
-    - bluetooth
+  tags: [ 'sound' ]

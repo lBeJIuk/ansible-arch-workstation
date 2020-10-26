@@ -14,6 +14,7 @@
     - plasma
     - ssh
     - virtualbox
+    - sound
 
     # - hostname
     # - mkinitcpio
@@ -30,7 +31,6 @@
     #- browser
     # - pianobar
     # - python
-    #- sound
     # - mutt
     # - vagrant
     # - user
@@ -71,6 +71,7 @@
          - remmina
          - remmina-plugin-open
          - remmina-plugin-rdesktop
+         - nautilus
        tags: [ 'aur_apps' ]
 # 
 #     - name: install evolution email client
