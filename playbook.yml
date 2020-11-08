@@ -15,6 +15,7 @@
     - ssh
     - virtualbox
     - sound
+    - kubernetes
 
   tasks:
    - name: install apps from aur
@@ -47,4 +48,10 @@
        - lsof
        - nmap
        - tcpdump
+       - gimp
+       - calibre
+       - ripgrep
+       - fzf
+       - bat
+       - tokei
      tags: [ 'aur_apps' ]

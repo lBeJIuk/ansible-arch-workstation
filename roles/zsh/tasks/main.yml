@@ -6,6 +6,7 @@
   with_items:
     - git
     - zsh
+    - starship
   tags: [ 'zsh' ]
 
 - name: use oh-my-zsh
@@ -26,6 +27,14 @@
   copy:
     src: files/.zshrc
     dest: "/home/{{ user.name }}/.zshrc"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+  tags: [ 'zsh' ]
+
+- name: Copy config
+  copy:
+    src: files/starship.toml
+    dest: "/home/{{ user.name }}/.config/starship.toml"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
   tags: [ 'zsh' ]
