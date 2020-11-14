@@ -1,0 +1,19 @@
+# /root/.config/tmuxinator/test.yml
+
+name: work
+root: ~/dev/Production/work/env/www
+
+windows:
+  - main:
+      layout: tiled
+      panes:
+        - sudo mc dev/Production/work/env/www/
+        - echo 'hello'
+        - docker start maria_db cron mailcatcher.me xapachephp7
+        - cd ~/Downloads
+  - secondary:
+      layout: tiled
+      panes:
+        - echo 1
+        - echo 1
+        - cd ~/Downloads

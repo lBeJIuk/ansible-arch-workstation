@@ -1,0 +1,14 @@
+name: home
+root: ~/
+
+windows:
+  - main:
+      layout: tiled
+      panes:
+        - free
+        - cd Downloads
+  - secondary:
+      layout: tiled
+      panes:
+        - echo 1
+        - echo 1

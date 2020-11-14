@@ -16,6 +16,7 @@
     - virtualbox
     - sound
     - kubernetes
+    - tmuxinator
 
   tasks:
    - name: install apps from aur
@@ -54,4 +55,5 @@
        - fzf
        - bat
        - tokei
+       - postman-bin
      tags: [ 'aur_apps' ]
