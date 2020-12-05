@@ -17,6 +17,7 @@
     - sound
     - kubernetes
     - tmuxinator
+    - remmina
 
   tasks:
    - name: install apps from aur
@@ -34,9 +35,6 @@
        - mc
        - htop
        - meld
-       - remmina
-       - remmina-plugin-open
-       - remmina-plugin-rdesktop
        - nautilus
        - telegram-desktop
        - nodejs
@@ -56,4 +54,5 @@
        - bat
        - tokei
        - postman-bin
+       - spotify
      tags: [ 'aur_apps' ]

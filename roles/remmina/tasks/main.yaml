@@ -1,0 +1,13 @@
+---
+# Remmina
+- name: Install Remmina
+  yay:
+    name: "{{ item }}"
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  with_items:
+    - remmina
+    - remmina-plugin-open
+    - remmina-plugin-rdesktop
+    - freerdp
+  tags: [ 'remmina' ]
