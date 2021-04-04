@@ -8,7 +8,7 @@
     - kubectl
     - kubelet-bin
     - kubeadm-bin
-    - cni-plugins-bin
+    - cni-plugins
     - ebtables
     - ethtool
     - conntrack-tools

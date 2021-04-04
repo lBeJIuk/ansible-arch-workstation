@@ -124,3 +124,5 @@ setopt hist_ignore_space
 
 
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.zsh

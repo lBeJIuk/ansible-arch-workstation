@@ -1,0 +1,44 @@
+---
+- name: install apps from aur
+  yay:
+    name: "{{ item }}"
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  with_items:
+    - base-devel
+    - jetbrains-toolbox
+    - teams
+    - slack-desktop
+    - discord
+    - zoom
+    - peek
+    - mc
+    - htop
+    - meld
+    - nautilus
+    - telegram-desktop
+    - nodejs
+    - npm
+    - code
+    - code-marketplace
+    - speedcrunch
+    - cutecom
+    - mongodb-compass
+    - obinskit
+    - lsof
+    - nmap
+    - tcpdump
+    - gimp
+    - calibre
+    - ripgrep
+    - fzf
+    - bat
+    - tokei
+    - postman-bin
+    - spotify
+    - cups
+    - ghostscript
+    - subversion
+    - chromium
+    - linux-firmware-iwlwifi-git
+  tags: [ 'aur_apps' ]

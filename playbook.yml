@@ -2,8 +2,8 @@
 - hosts: all
   become: true
   become_method: sudo
-
   roles:
+    - aur_apps
     - sublime
     - zsh
     - terminator
@@ -18,41 +18,8 @@
     - kubernetes
     - tmuxinator
     - remmina
+    - logid
 
-  tasks:
-   - name: install apps from aur
-     yay:
-       name: "{{ item }}"
-       user: "{{ user.name }}"
-       dir: "/opt/"
-     with_items:
-       - jetbrains-toolbox
-       - teams
-       - slack-desktop
-       - discord
-       - zoom
-       - peek
-       - mc
-       - htop
-       - meld
-       - nautilus
-       - telegram-desktop
-       - nodejs
-       - npm
-       - code
-       - speedcrunch
-       - cutecom
-       - mongodb-compass
-       - obinskit
-       - lsof
-       - nmap
-       - tcpdump
-       - gimp
-       - calibre
-       - ripgrep
-       - fzf
-       - bat
-       - tokei
-       - postman-bin
-       - spotify
-     tags: [ 'aur_apps' ]
+
+
+# sudo ln -sv /usr/bin/ksshaskpass /usr/lib/ssh/ssh-askpass

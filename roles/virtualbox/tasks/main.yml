@@ -1,4 +1,14 @@
 ---
+- name: Install additionals for virtualbox
+  yay:
+    name: "{{ item }} "
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  with_items:
+    - virtualbox-ext-oracle
+    - virtualbox-host-dkms
+    - linux510-headers
+  tags: ['virtualbox']
 
 - name: install virtualbox
   package:
@@ -6,8 +16,9 @@
     state: present
   with_items:
     - net-tools
-    - virtualbox-host-modules-arch
+    - virtualbox-guest-iso
     - virtualbox
   notify:
    - vboxreload
+   - modprobe
   tags: [ 'virtualbox' ]

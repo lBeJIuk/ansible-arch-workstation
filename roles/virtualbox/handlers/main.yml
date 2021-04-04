@@ -2,3 +2,7 @@
 - name: vboxreload
   command: vboxreload
   tags: [ "virtualbox" ]
+- name: modprobe
+  community.general.modprobe:
+    name: vboxdrv
+    state: present

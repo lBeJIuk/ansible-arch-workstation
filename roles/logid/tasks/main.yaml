@@ -1,0 +1,15 @@
+---
+- name: Install logid
+  yay:
+    name: logiops
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  tags: ['logid']
+
+- name: Copy config
+  copy:
+    src: files/logid.cfg
+    dest: "/etc/logid.cfg"
+    owner: root
+    group: root
+  tags: [ 'logid' ]

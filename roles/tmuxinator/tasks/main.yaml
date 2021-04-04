@@ -1,12 +1,13 @@
 ---
 - name: install tmux and dependencies
-  package:
-    name: "{{ item }}"
-    state: present
+  yay:
+    name: " {{ item }}"
+    user: "{{ user.name }}"
+    dir: "/opt/"
   with_items:
     - tmux
     - tmuxinator
-  tags: [ 'tmux' ]
+  tags: ['tmux']
 
 - name: create ~/.config diretory
   file:

@@ -23,6 +23,16 @@
     version: master
   tags: [ 'zsh' ]
 
+- name: change owner
+  file:
+    path: "/home{{ user.name }}/.oh-my-zsh"
+    state: directory
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0750
+  become: yes
+  tags: [ 'zsh' ]
+
 - name: Copy config
   copy:
     src: files/.zshrc
@@ -43,4 +53,10 @@
   user:
     name: "{{ user.name }}"
     shell: /bin/zsh
+  tags: [ 'zsh' ]
+
+- name: Ensure repo is up-to-date
+  git:
+    repo: https://github.com/zsh-users/zsh-completions
+    dest: "/home/{{ user.name }}/.oh-my-zsh/custom/plugins/zsh-completions"
   tags: [ 'zsh' ]
