@@ -41,4 +41,5 @@
     - subversion
     - chromium
     - linux-firmware-iwlwifi-git
+    - wine
   tags: [ 'aur_apps' ]

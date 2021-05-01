@@ -104,7 +104,6 @@ export GIT_EDITOR="$VISUAL"
 
 alias dpsa="docker ps -a --format=\"table {{.Status}}\t{{.Names}}\t{{.Ports}}\""
 
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 export PATH=$PATH:/usr/local/go/bin
 
@@ -126,3 +125,9 @@ setopt hist_ignore_space
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.zsh
+
+#export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
