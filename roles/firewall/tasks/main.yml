@@ -1,0 +1,19 @@
+---
+- name: Copy service
+  copy:
+    src: files/my_firewall.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+  tags: ["firewall"]
+
+- name: Copy firewall config
+  copy:
+    src: files/my_firewall.sh
+    dest: /etc/my_firewall.sh
+    owner: root
+    group: root
+    mode: "0700"
+  tags: ["firewall"]
+  notify:
+    - start firewall

@@ -7,4 +7,14 @@
     state: restarted
     enabled: yes
     user: yes
-  tags: [ 'ssh' ]
+  tags: ['ssh']
+
+- name: restart sshd
+  become: true
+  systemd:
+    name: sshd
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+    user: no
+  tags: ['ssh']

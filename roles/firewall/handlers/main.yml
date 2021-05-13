@@ -1,0 +1,9 @@
+---
+- name: start firewall
+  become: true
+  systemd:
+    name: my_firewall
+    daemon_reload: yes
+    state: started
+    enabled: yes
+  tags: ["firewall"]

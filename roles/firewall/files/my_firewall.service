@@ -1,0 +1,9 @@
+[Unit]
+Description=My firewall
+
+[Service]
+Type=oneshot
+ExecStart=/etc/my_firewall.sh
+
+[Install]
+WantedBy=multi-user.target

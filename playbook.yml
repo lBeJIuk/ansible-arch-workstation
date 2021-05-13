@@ -19,7 +19,5 @@
     - tmuxinator
     - remmina
     - logid
-
-
-
+    - firewall
 # sudo ln -sv /usr/bin/ksshaskpass /usr/lib/ssh/ssh-askpass
