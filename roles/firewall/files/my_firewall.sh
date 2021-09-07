@@ -6,6 +6,7 @@ sudo iptables -A INPUT -i wlp39s0 -p ALL -m state --state ESTABLISHED,RELATED -j
 sudo iptables -A INPUT -i wlp39s0 -j LOG --log-prefix '** SUSPECT IPV4 **'
 sudo iptables -A INPUT -p tcp --dport 22 -s 192.168.1.0/24 -j ACCEPT
 sudo iptables -A INPUT -i wlp39s0 -j DROP
+sudo iptables -I DOCKER-USER -s 172.0.0.0/6 ! -d 172.0.0.0/6 -j DROP
 
 # ipv6
 # allow RELATED and ESTABLISHED traffic
