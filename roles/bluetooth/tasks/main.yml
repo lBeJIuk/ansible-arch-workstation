@@ -1,0 +1,13 @@
+---
+- name: install apps from aur
+  yay:
+    name: "{{ item }}"
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  with_items:
+    - bluez
+    - bluez-utils
+    - bluedevil
+  notify:
+    - start bluetooth
+  tags: [ 'bluetooth' ]

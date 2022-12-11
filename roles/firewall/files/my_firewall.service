@@ -3,6 +3,7 @@ Description=My firewall
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
 ExecStart=/etc/my_firewall.sh
 
 [Install]

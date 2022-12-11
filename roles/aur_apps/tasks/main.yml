@@ -5,7 +5,6 @@
     user: "{{ user.name }}"
     dir: "/opt/"
   with_items:
-    - base-devel
     - jetbrains-toolbox
     - teams
     - slack-desktop
@@ -35,11 +34,15 @@
     - bat
     - tokei
     - postman-bin
-    - spotify
     - cups
     - ghostscript
     - subversion
     - chromium
-    - linux-firmware-iwlwifi-git
     - wine
+    - yubioath-desktop
+    - noto-fonts-emoji
+    # Wacom dependencies
+    - input-wacom-dkms
+    - kcm-wacomtablet
+    - xf86-input-wacom
   tags: [ 'aur_apps' ]

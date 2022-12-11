@@ -29,7 +29,7 @@
     dest: "/home/{{ user.name }}/.vim/autoload/plug.vim"
   tags: [ "vim" ]
 
-- name: Clone colots from github
+- name: Clone colors from github
   get_url:
     url: https://raw.githubusercontent.com/kristijanhusak/vim-hybrid-material/master/colors/hybrid_material.vim
     dest: "/home/{{ user.name }}/.vim/colors/hybrid_material.vim"

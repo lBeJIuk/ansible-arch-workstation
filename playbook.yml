@@ -1,3 +1,5 @@
+# add fzf
+
 ---
 - hosts: all
   become: true
@@ -13,11 +15,10 @@
     - flameshot
     - plasma
     - ssh
-    - virtualbox
-    - sound
     - kubernetes
     - tmuxinator
     - remmina
     - logid
     - firewall
+    - bluetooth
 # sudo ln -sv /usr/bin/ksshaskpass /usr/lib/ssh/ssh-askpass

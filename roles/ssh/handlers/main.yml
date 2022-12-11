@@ -6,7 +6,7 @@
     daemon_reload: yes
     state: restarted
     enabled: yes
-    user: yes
+    scope: "user"
   tags: ['ssh']
 
 - name: restart sshd
@@ -16,5 +16,4 @@
     daemon_reload: yes
     state: restarted
     enabled: yes
-    user: no
   tags: ['ssh']
