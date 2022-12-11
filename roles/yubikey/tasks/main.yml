@@ -1,0 +1,12 @@
+---
+- name: install apps from aur
+  yay:
+    name: "{{ item }}"
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  with_items:
+    - yubioath-desktop
+    - pcsc-tools
+  notify:
+    - restart pcsc
+  tags: [ 'yubikey' ]

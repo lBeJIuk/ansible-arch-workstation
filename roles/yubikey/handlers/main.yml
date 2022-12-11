@@ -1,0 +1,9 @@
+---
+- name: restart pcsc
+  become: true
+  systemd:
+    name: pcsc
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+  tags: ['yubikey']

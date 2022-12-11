@@ -39,7 +39,6 @@
     - subversion
     - chromium
     - wine
-    - yubioath-desktop
     - noto-fonts-emoji
     # Wacom dependencies
     - input-wacom-dkms
