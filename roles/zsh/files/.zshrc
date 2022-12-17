@@ -103,6 +103,7 @@ export GIT_EDITOR="$VISUAL"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias dpsa="docker ps -a --format=\"table {{.Status}}\t{{.Names}}\t{{.Ports}}\""
+alias y_learn="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 
 
 export PATH=$PATH:/usr/local/go/bin

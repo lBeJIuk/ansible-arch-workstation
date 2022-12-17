@@ -1,0 +1,20 @@
+---
+- name: restart NetworkManager
+  become: true
+  ansible.builtin.systemd:
+    name: NetworkManager
+    daemon_reload: yes
+    state: stopped
+    enabled: false
+  tags: ['netctl']
+
+- name: start netctl
+  become: true
+  ansible.builtin.command: netctl start wpa_mikrotik_5
+  tags: ['netctl']
+
+- name: enable netctl
+  become: true
+  ansible.builtin.command: netctl enable wpa_mikrotik_5
+  tags: ['netctl']
+  

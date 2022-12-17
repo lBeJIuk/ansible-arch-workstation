@@ -30,7 +30,6 @@
     - gimp
     - calibre
     - ripgrep
-    - fzf
     - bat
     - tokei
     - postman-bin
@@ -40,8 +39,7 @@
     - chromium
     - wine
     - noto-fonts-emoji
-    # Wacom dependencies
-    - input-wacom-dkms
-    - kcm-wacomtablet
-    - xf86-input-wacom
+    - vlc
+    - libreoffice-still
+
   tags: [ 'aur_apps' ]

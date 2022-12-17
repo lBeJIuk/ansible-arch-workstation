@@ -21,4 +21,7 @@
     - logid
     - firewall
     - bluetooth
-# sudo ln -sv /usr/bin/ksshaskpass /usr/lib/ssh/ssh-askpass
+    - yubikey
+    - netctl
+    - audio
+    - wacom

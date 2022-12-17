@@ -1,0 +1,11 @@
+---
+- name: install apps from aur
+  yay:
+    name: "{{ item }}"
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  with_items:
+    - input-wacom-dkms
+    - kcm-wacomtablet
+    - xf86-input-wacom
+  tags: [ 'wacom' ]

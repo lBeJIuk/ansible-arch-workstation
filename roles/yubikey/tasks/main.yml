@@ -7,6 +7,43 @@
   with_items:
     - yubioath-desktop
     - pcsc-tools
+    - ksshaskpass
+    - gnupg
+    - pcsclite
+    - ccid
   notify:
     - restart pcsc
+  tags: [ 'yubikey' ]
+
+- name: Create a symbolic link for ssh-askpass
+  become: true
+  ansible.builtin.file:
+    src: /usr/bin/ksshaskpass
+    dest: /usr/lib/ssh/ssh-askpass1
+    state: link
+  tags: [ 'yubikey' ]
+
+- name: create ~/.gnupg diretory
+  file:
+    path: "/home/{{ user.name }}/.gnupg"
+    state: directory
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0755
+  tags: [ 'yubikey' ]
+
+- name: Copy config 1
+  copy:
+    src: files/gpg-agent.conf
+    dest: "/home/{{ user.name }}/.gnupg/gpg-agent.conf"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+  tags: [ 'yubikey' ]
+
+- name: Copy config 2
+  copy:
+    src: files/gpg.conf
+    dest: "/home/{{ user.name }}/.gnupg/gpg.conf"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
   tags: [ 'yubikey' ]
