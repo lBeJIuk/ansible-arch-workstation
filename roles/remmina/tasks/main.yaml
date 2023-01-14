@@ -9,5 +9,6 @@
     - remmina
     - remmina-plugin-open
     - remmina-plugin-rdesktop
+    - remmina-plugin-ultravnc
     - freerdp
   tags: [ 'remmina' ]

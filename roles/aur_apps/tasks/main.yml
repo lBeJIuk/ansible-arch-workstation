@@ -7,6 +7,8 @@
   with_items:
     - jetbrains-toolbox
     - teams
+    - teamviewer
+    - filezilla
     - slack-desktop
     - discord
     - zoom

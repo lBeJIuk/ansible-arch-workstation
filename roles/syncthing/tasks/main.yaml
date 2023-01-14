@@ -1,0 +1,9 @@
+---
+- name: Install syncthing
+  yay:
+    name: syncthing
+    user: "{{ user.name }}"
+    dir: "/opt/"
+  tags: ['syntching']
+  notify:
+    - start syncthing
