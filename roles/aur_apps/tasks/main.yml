@@ -6,12 +6,9 @@
     dir: "/opt/"
   with_items:
     - jetbrains-toolbox
-    - teams
     - teamviewer
     - filezilla
-    - slack-desktop
     - discord
-    - zoom
     - peek
     - mc
     - htop
@@ -24,8 +21,6 @@
     - code-marketplace
     - speedcrunch
     - cutecom
-    - mongodb-compass
-    - obinskit
     - lsof
     - nmap
     - tcpdump
@@ -43,5 +38,16 @@
     - noto-fonts-emoji
     - vlc
     - libreoffice-still
+    - sane
+    - sane-airscan
+    - xournalpp
+    - obsidian
+    - wezterm
+    - spotify
+    - kooha
+    - xdg-desktop-portal
+    - xdg-desktop-portal-kde
+    - strongswan
+    - networkmanager-strongswan
 
   tags: [ 'aur_apps' ]

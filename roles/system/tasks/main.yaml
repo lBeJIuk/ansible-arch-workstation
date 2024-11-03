@@ -1,0 +1,4 @@
+- name: Set hardware clock to local time (for dual boot)
+  community.general.timezone:
+    hwclock: local
+  tags: ['system']

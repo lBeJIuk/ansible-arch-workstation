@@ -11,6 +11,7 @@
     - gnupg
     - pcsclite
     - ccid
+    - libfido2
   notify:
     - restart pcsc
   tags: [ 'yubikey' ]

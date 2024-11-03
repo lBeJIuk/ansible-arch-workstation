@@ -1,4 +1,7 @@
 # add fzf
+# TODO SCANER > https://wiki.archlinux.org/title/SANE/Scanner-specific_problems#Image_Scan.21_for_Linux
+# iscan iscan-plugin-network
+# /etc/sane.d/epkowa.conf > net <IP-address|hostname> [port-number]
 
 ---
 - hosts: all
@@ -22,7 +25,6 @@
     - firewall
     - bluetooth
     - yubikey
-    - netctl
-    - audio
     - wacom
     - syncthing
+    - system

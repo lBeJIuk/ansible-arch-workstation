@@ -1,12 +1,11 @@
 ---
 - name: install zsh and dependencies
-  package:
-    name: "{{ item }}"
+  community.general.pacman:
+    name:
+      - git
+      - zsh
+      - starship
     state: present
-  with_items:
-    - git
-    - zsh
-    - starship
   tags: [ 'zsh' ]
 
 - name: use oh-my-zsh
