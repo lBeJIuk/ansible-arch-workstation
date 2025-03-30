@@ -27,7 +27,6 @@
     - gimp
     - calibre
     - ripgrep
-    - bat
     - tokei
     - postman-bin
     - cups
@@ -40,9 +39,7 @@
     - libreoffice-still
     - sane
     - sane-airscan
-    - xournalpp
     - obsidian
-    - wezterm
     - spotify
     - kooha
     - xdg-desktop-portal
