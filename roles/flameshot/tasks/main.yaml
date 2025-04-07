@@ -14,11 +14,68 @@
     mode: 0755
   tags: [ "flameshot" ]
 
-- name: Generate config
-  template:
-    src: flameshot.ini.j2
-    dest: "/home/{{ user.name }}/.config/flameshot/flameshot.ini.j2"
+- name: Create .local/bin directory if it doesn't exist
+  file:
+    path: "/home/{{ user.name }}/.local/bin"
+    state: directory
+    mode: '0755'
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
-    mode: "0644"
+  tags: [ "flameshot" ]
+
+- name: Create Flameshot wrapper script
+  copy:
+    dest: "/home/{{ user.name }}/.local/bin/flameshot-wrapper"
+    content: |
+      #!/bin/bash
+      # Wrapper for Flameshot to fix Wayland issues
+      export QT_QPA_PLATFORM=xcb
+      export QT_SCREEN_SCALE_FACTORS="1"
+      flameshot gui "$@"
+    mode: '0755'
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+  tags: [ "flameshot" ]
+
+- name: Configure Flameshot custom shortcut in KDE Plasma
+  blockinfile:
+    path: "/home/{{ user.name }}/.config/kglobalshortcutsrc"
+    block: |
+      [flameshot-wrapper.desktop]
+      _k_friendly_name=Flameshot Screenshot
+      _launch=Ctrl+Print,none,Launch Flameshot Screenshot
+    create: yes
+  tags: [ "flameshot" ]
+
+- name: Create .local/share/applications directory if it doesn't exist
+  file:
+    path: "{{ ansible_env.HOME }}/.local/share/applications"
+    state: directory
+    mode: '0755'
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+  tags: [ "flameshot" ]
+
+- name: Create custom desktop entry for Flameshot wrapper
+  copy:
+    dest: "/home/{{ user.name }}/.local/share/applications/flameshot-wrapper.desktop"
+    content: |
+      [Desktop Entry]
+      Name=Flameshot Screenshot
+      GenericName=Screenshot Tool
+      Comment=Powerful yet simple to use screenshot software
+      Exec=/home/{{ user.name }}/.local/bin/flameshot-wrapper
+      Icon=flameshot
+      Terminal=false
+      Type=Application
+      Categories=Utility;
+      StartupNotify=false
+      Actions=Configure;
+
+      [Desktop Action Configure]
+      Name=Configure
+      Exec=flameshot config
+    mode: '0644'
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
   tags: [ "flameshot" ]

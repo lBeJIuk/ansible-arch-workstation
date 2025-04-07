@@ -5,6 +5,7 @@
     user: "{{ user.name }}"
     dir: "/opt/"
   with_items:
+    - terminator
     - jetbrains-toolbox
     - teamviewer
     - filezilla
