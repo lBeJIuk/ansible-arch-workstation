@@ -133,5 +133,6 @@ export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --kill gpg-agent
 gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye
 
 bindkey \^U backward-kill-line
