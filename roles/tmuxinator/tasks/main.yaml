@@ -1,7 +1,7 @@
 ---
 - name: install tmux and dependencies
   yay:
-    name: " {{ item }}"
+    name: "{{ item }}"
     user: "{{ user.name }}"
     dir: "/opt/"
   with_items:

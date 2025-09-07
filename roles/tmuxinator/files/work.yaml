@@ -9,7 +9,7 @@ windows:
       panes:
         - sudo mc dev/Production/work/env/www/
         - echo 'hello'
-        - docker start maria_db cron mailcatcher.me xapachephp8_2 redis av ftp
+        - docker start maria_db cron mailcatcher.me redis av ftp apache_fpm xfpm8_2
         - cd ~/Downloads
   - secondary:
       layout: tiled

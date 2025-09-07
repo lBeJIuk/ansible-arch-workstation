@@ -1,9 +1,0 @@
----
-- name: start bluetooth
-  become: true
-  systemd:
-    name: bluetooth
-    daemon_reload: yes
-    state: started
-    enabled: yes
-  tags: ["bluetooth"]
