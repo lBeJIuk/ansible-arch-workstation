@@ -8,7 +8,7 @@ ansible-playbook playbook.yml -K --tags aur_apps \
   --tags plasma \
   --tags ssh \
   --tags kubernetes \
-  --tags tmuxinator \
+  --tags tmux \
   --tags remmina \
   --tags logid \
   --tags firewall \
