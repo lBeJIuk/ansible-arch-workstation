@@ -13,7 +13,6 @@
     - zsh
     - vim
     - docker
-    - flameshot
     - plasma
     - ssh
     - kubernetes
@@ -21,8 +20,8 @@
     - remmina
     - logid
     - firewall
-    - bluetooth
     - yubikey
-    - wacom
     - syncthing
     - system
+    - flameshot
+    - wacom

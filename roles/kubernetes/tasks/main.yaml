@@ -1,9 +1,11 @@
 ---
 - name: Install kubernetes
-  yay:
-    name: " {{ item }}"
-    user: "{{ user.name }}"
-    dir: "/opt/"
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name: "{{ item }}"
+    state: present
+    use: yay
   with_items:
     - kubectl
     - kubelet-bin

@@ -1,10 +1,12 @@
 ---
 # Remmina
 - name: Install Remmina
-  yay:
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
     name: "{{ item }}"
-    user: "{{ user.name }}"
-    dir: "/opt/"
+    state: present
+    use: yay
   with_items:
     - remmina
     - remmina-plugin-open

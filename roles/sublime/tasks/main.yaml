@@ -1,9 +1,11 @@
 ---
 - name: Install sublime
-  yay:
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
     name: sublime-text-3
-    user: "{{ user.name }}"
-    dir: "/opt/"
+    state: present
+    use: yay
   tags: ['sublime']
 - name: create diretory
   file:

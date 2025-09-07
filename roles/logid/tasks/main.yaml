@@ -1,9 +1,11 @@
 ---
 - name: Install logid
-  yay:
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
     name: logiops
-    user: "{{ user.name }}"
-    dir: "/opt/"
+    state: present
+    use: yay
   tags: ['logid']
 
 - name: Copy config

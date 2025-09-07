@@ -1,9 +1,11 @@
 ---
 - name: Install syncthing
-  yay:
+  become: yes
+  become_user: aur_builder
+  kewlfft.aur.aur:
     name: syncthing
-    user: "{{ user.name }}"
-    dir: "/opt/"
+    state: present
+    use: yay
   tags: ['syntching']
   notify:
     - start syncthing
