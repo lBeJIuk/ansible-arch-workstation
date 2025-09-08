@@ -65,4 +65,5 @@
     - strongswan
     - networkmanager-strongswan
     - ntfs-3g
+    - fzf
   tags: [ 'aur_apps' ]
