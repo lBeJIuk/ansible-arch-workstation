@@ -4,7 +4,6 @@ nfs_server: "192.168.1.110"
 nfs_path: "/store/backup"
 nfs_mount_point: "/backup"
 backup_tag: "arch-pc"
-backup_user: "{{ ansible_user_id }}"
 
 # Restic Configuration
 restic_repo: "{{ nfs_mount_point }}/{{ backup_tag }}"
@@ -13,10 +12,10 @@ backup_delay_seconds: 300  # 5 minutes
 
 # Paths to backup
 backup_paths:
-  - "/home/{{ backup_user }}/Downloads"
-  - "/home/{{ backup_user }}/Documents"
-  - "/home/{{ backup_user }}/.ssh"
-  - "/home/{{ backup_user }}/.history"
+  - "/home/lbejiuk/Downloads"
+  - "/home/lbejiuk/Documents"
+  - "/home/lbejiuk/.ssh"
+  - "/home/lbejiuk/.history"
   - "/etc"
 
 # Retention policy
