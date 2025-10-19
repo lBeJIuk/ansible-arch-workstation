@@ -1,9 +1,0 @@
----
-- name: start syncthing
-  become: true
-  systemd:
-    name: syncthing
-    daemon_reload: yes
-    state: started
-    enabled: yes
-  tags: ["syncthing"]

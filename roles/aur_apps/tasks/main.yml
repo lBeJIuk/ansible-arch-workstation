@@ -27,7 +27,6 @@
   with_items:
     - terminator
     - jetbrains-toolbox
-    #      - teamviewer
     - filezilla
     - discord
     - mc
@@ -55,7 +54,6 @@
     - chromium
     - noto-fonts-emoji
     - vlc
-#    - libreoffice-still is broken
     - sane
     - sane-airscan
     - obsidian
@@ -66,4 +64,9 @@
     - networkmanager-strongswan
     - ntfs-3g
     - fzf
+    - go-task-git
+    - libreoffice-still
+    - libreoffice-still-de
+    - gvfs-smb
+    - restic
   tags: [ 'aur_apps' ]

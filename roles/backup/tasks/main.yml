@@ -1,0 +1,83 @@
+---
+- name: Create NFS mount point
+  file:
+    path: "{{ nfs_mount_point }}"
+    state: directory
+    mode: '0755'
+  tags: [ 'backup' ]
+
+- name: Add NFS mount to fstab
+  mount:
+    path: "{{ nfs_mount_point }}"
+    src: "{{ nfs_server }}:{{ nfs_path }}"
+    fstype: nfs
+    opts: defaults,_netdev
+    state: mounted
+  tags: [ 'backup' ]
+
+- name: Check if restic repository exists
+  stat:
+    path: "{{ restic_repo }}/config"
+  register: restic_config
+  tags: [ 'backup' ]
+
+- name: Initialize restic repository
+  shell: |
+    restic --insecure-no-password init --repo {{ restic_repo }}
+  when: not restic_config.stat.exists
+  no_log: true
+  tags: [ 'backup' ]
+
+- name: Create backup script from template
+  template:
+    src: backup-script.sh.j2
+    dest: /usr/local/bin/backup-{{ inventory_hostname }}.sh
+    mode: '0700'
+    owner: root
+    group: root
+  tags: [ 'backup' ]
+
+- name: Create systemd service for backup on boot
+  template:
+    src: backup-on-boot.service.j2
+    dest: /etc/systemd/system/backup-on-boot.service
+    mode: '0644'
+  when: backup_on_boot
+  notify: reload systemd
+  tags: [ 'backup' ]
+
+- name: Enable backup-on-boot service
+  systemd:
+    name: backup-on-boot.service
+    enabled: yes
+  when: backup_on_boot
+  tags: [ 'backup' ]
+
+- name: Disable backup-on-boot service
+  systemd:
+    name: backup-on-boot.service
+    enabled: no
+    state: stopped
+  when: not backup_on_boot
+  tags: [ 'backup' ]
+
+- name: Create log directory
+  file:
+    path: /var/log/restic
+    state: directory
+    mode: '0755'
+  tags: [ 'backup' ]
+
+- name: Setup logrotate for restic
+  copy:
+    dest: /etc/logrotate.d/restic
+    mode: '0644'
+    content: |
+      /var/log/restic/*.log {
+          weekly
+          rotate 4
+          compress
+          missingok
+          notifempty
+      }
+  tags: [ 'backup' ]

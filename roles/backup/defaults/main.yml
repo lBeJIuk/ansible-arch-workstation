@@ -1,0 +1,28 @@
+---
+# NFS Configuration
+nfs_server: "192.168.1.110"
+nfs_path: "/store/backup"
+nfs_mount_point: "/backup"
+backup_tag: "arch-pc"
+backup_user: "{{ ansible_user_id }}"
+
+# Restic Configuration
+restic_repo: "{{ nfs_mount_point }}/{{ backup_tag }}"
+
+backup_delay_seconds: 300  # 5 minutes
+
+# Paths to backup
+backup_paths:
+  - "/home/{{ backup_user }}/Downloads"
+  - "/home/{{ backup_user }}/Documents"
+  - "/home/{{ backup_user }}/.ssh"
+  - "/home/{{ backup_user }}/.history"
+  - "/etc"
+
+# Retention policy
+retention_daily: 7
+retention_weekly: 4
+retention_monthly: 4
+
+# Backup timing
+backup_on_boot: true

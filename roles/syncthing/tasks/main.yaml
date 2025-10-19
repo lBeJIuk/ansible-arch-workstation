@@ -1,11 +1,15 @@
 ---
-- name: Install syncthing
-  become: yes
-  become_user: aur_builder
-  kewlfft.aur.aur:
+- name: Install Syncthing
+  community.general.pacman:
     name: syncthing
     state: present
-    use: yay
-  tags: ['syntching']
-  notify:
-    - start syncthing
+    update_cache: yes
+  tags: ["syncthing"]
+
+- name: Enable and start Syncthing service for user
+  ansible.builtin.systemd:
+    name: "syncthing@{{ ansible_user_id }}.service"
+    enabled: yes
+    state: started
+  become: no
+  tags: ["syncthing"]

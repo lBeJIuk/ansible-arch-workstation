@@ -1,0 +1,14 @@
+[Unit]
+Description=Backup {{ inventory_hostname }} after boot
+After=network-online.target nfs-client.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep {{ backup_delay_seconds }}
+ExecStart=/usr/local/bin/backup-{{ inventory_hostname }}.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
