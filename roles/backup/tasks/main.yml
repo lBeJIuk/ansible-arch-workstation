@@ -81,3 +81,37 @@
           notifempty
       }
   tags: [ 'backup' ]
+
+- name: Configure rsnapshot
+  template:
+    src: rsnapshot.conf.j2
+    dest: /etc/rsnapshot.conf
+    mode: '0644'
+  tags: [ 'backup' ]
+
+- name: Create rsnapshot backup script
+  copy:
+    dest: /usr/local/bin/rsnapshot-backup.sh
+    mode: '0755'
+    content: |
+      #!/bin/bash
+      sleep 30
+      /usr/bin/rsnapshot daily
+      /usr/bin/rsnapshot weekly
+      /usr/bin/rsnapshot monthly
+  tags: [ 'backup' ]
+      
+- name: Create systemd service for rsnapshot on boot
+  template:
+    src: rsnapshot-on-boot.service.j2
+    dest: /etc/systemd/system/rsnapshot-on-boot.service
+    mode: '0644'
+  notify: reload systemd
+  tags: [ 'backup' ]
+
+- name: Enable rsnapshot-on-boot service
+  systemd:
+    name: rsnapshot-on-boot.service
+    enabled: yes
+    daemon_reload: yes
+  tags: [ 'backup' ]

@@ -1,0 +1,12 @@
+[Unit]
+Description=Rsnapshot backup after boot
+After=network-online.target local-fs.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep {{ rsnapshot_delay_seconds }}
+ExecStart=/usr/local/bin/rsnapshot-backup.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -69,4 +69,5 @@
     - libreoffice-still-de
     - gvfs-smb
     - restic
+    - rsnapshot
   tags: [ 'aur_apps' ]
