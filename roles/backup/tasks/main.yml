@@ -99,6 +99,10 @@
       /usr/bin/rsnapshot daily
       /usr/bin/rsnapshot weekly
       /usr/bin/rsnapshot monthly
+      USER_NAME="lbejiuk"
+      USER_ID=$(id -u $USER_NAME)
+      sudo -u $USER_NAME DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$USER_ID/bus" \
+          notify-send "Backup Complete" "Master backup finished successfully"
   tags: [ 'backup' ]
       
 - name: Create systemd service for rsnapshot on boot

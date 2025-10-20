@@ -54,6 +54,10 @@ if [ $BACKUP_EXIT_CODE -eq 0 ]; then
     echo "========================================="
     echo "Backup completed successfully at $(date)"
     echo "========================================="
+    USER_NAME="lbejiuk"
+    USER_ID=$(id -u $USER_NAME)
+    sudo -u $USER_NAME DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$USER_ID/bus" \
+        notify-send "Backup Complete" "Master backup finished successfully"
 else
     echo "========================================="
     echo "ERROR: Backup failed with exit code $BACKUP_EXIT_CODE at $(date)"
